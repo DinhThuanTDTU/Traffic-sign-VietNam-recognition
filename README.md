@@ -18,3 +18,6 @@ Các model bao gồm:
 - YOLOv8n-s-m.
 - YOLOxs-m.
 
+## Tác giả
+Nguyễn Đình Thuần - SV K23 TDTU
+- link facebook: https://www.facebook.com/celldeath13/
