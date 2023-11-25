@@ -73,7 +73,7 @@ bộ dữ liệu dữ bao biển báo giao thông trong đề tài này sẽ g�
 
 ![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/46traffic.jpg)
 
-vvấu đây là biểu đồ số lần xuất hiện của biển báo trong bộ dữ liệu.
+và đây là biểu đồ số lần xuất hiện của biển báo trong bộ dữ liệu.
 ![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/phanbo_class.jpg)
 
 ## 3. Huấn luyện model
@@ -93,8 +93,9 @@ Faster RCNN là một mô hình phát hiện đối tượng hai giai đoạn. �
 ### 3.2. YOLO
 Thuật Toán  [YOLO ]( https://arxiv.org/abs/1506.02640) được phát triển bởi Joseph Redmon và cộng sự.
 YOLO là một mô hình phát hiện đối tượng nhanh và hiệu quả, hoạt động theo các bước sau:
-![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp
-)
+
+![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp)
+
 *   Xử Lý Toàn Bộ Hình Ảnh: Đầu tiên, YOLO xem xét toàn bộ hình ảnh một cách tổng thể, không giống như các mô hình phát hiện đối tượng truyền thống.
 
 *   Chia Hình Ảnh thành Lưới: Hình ảnh được chia thành một lưới có kích thước cố định (ví dụ: 13x13).
