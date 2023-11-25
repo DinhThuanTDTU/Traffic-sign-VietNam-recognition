@@ -8,6 +8,7 @@
 <h2 align="center"><b> NHẬN DIỆN BIỂN BÁO GIAO THÔNG VIỆT NAM SỬ DỤNG DEEPLEARNING
  </br></h2>
 
+
 ## Giảng viên hướng dẫn
 Họ tên | Email
 --- | --- 
@@ -71,5 +72,45 @@ Input và Output bài toán
 bộ dữ liệu dữ bao biển báo giao thông trong đề tài này sẽ gồm hơn 46 classes và 11577 ảnh chứa các loại biển báo như sau.
 
 ![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/46traffic.jpg)
+
+vvấu đây là biểu đồ số lần xuất hiện của biển báo trong bộ dữ liệu.
+![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/phanbo_class.jpg)
+
+## 3. Huấn luyện model
+### 3.1. Faster R-CNN
+Thuật toán  [Faser R-CNN ]( https://arxiv.org/abs/1506.01497) được phát triển bởi Shaoqing Ren và cộng sự.
+
+Faster RCNN là một mô hình phát hiện đối tượng hai giai đoạn. Đầu tiên, nó tạo ra các đề xuất vùng mà có thể chứa đối tượng, sau đó sử dụng một mạng phân loại để xác định lớp và vị trí chính xác của đối tượng và nó hoạt động theo các bước sau:
+![Mô hình Faster R-CNN](https://media.geeksforgeeks.org/wp-content/uploads/20230823154315/Region-Proposal-Network-RPN-2.png)
+*   Rút Trích Đặc Trưng: Đầu tiên, một hình ảnh được đưa qua mạng CNN (ví dụ: VGG hoặc ResNet) để rút trích đặc trưng.
+
+*   Region Proposal Network (RPN): Sau đó, một mạng con gọi là Region Proposal Network sử dụng đặc trưng này để xác định các vùng (regions) mà có thể chứa đối tượng. RPN tạo ra các đề xuất về vị trí và kích thước của hộp giới hạn tiềm năng.
+
+*   ROI Pooling: Các hộp đề xuất từ RPN sau đó được đưa qua một quá trình gọi là ROI Pooling, nơi mỗi hộp được chuyển hóa thành một kích thước cố định để có thể xử lý được.
+
+*   Phân Loại và Định Vị: Cuối cùng, các đặc trưng từ ROI Pooling được sử dụng bởi hai lớp đầu ra: một lớp phân loại để xác định lớp của đối tượng trong mỗi hộp, và một lớp regression để tinh chỉnh vị trí của hộp đề xuất. 
+
+### 3.2. YOLO
+Thuật Toán  [YOLO ]( https://arxiv.org/abs/1506.02640) được phát triển bởi Joseph Redmon và cộng sự.
+YOLO là một mô hình phát hiện đối tượng nhanh và hiệu quả, hoạt động theo các bước sau:
+![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp
+)
+*   Xử Lý Toàn Bộ Hình Ảnh: Đầu tiên, YOLO xem xét toàn bộ hình ảnh một cách tổng thể, không giống như các mô hình phát hiện đối tượng truyền thống.
+
+*   Chia Hình Ảnh thành Lưới: Hình ảnh được chia thành một lưới có kích thước cố định (ví dụ: 13x13).
+
+* Dự Đoán Đối Tượng và Lớp: Mỗi ô trong lưới đưa ra dự đoán về hộp giới hạn và xác suất lớp. Hộp giới hạn bao gồm thông tin về vị trí và kích thước của đối tượng tiềm năng, trong khi xác suất lớp biểu thị khả năng đối tượng thuộc về một lớp cụ thể.
+
+* Lọc và Tinh Chỉnh: Cuối cùng, YOLO áp dụng các kỹ thuật như non-maximum suppression để loại bỏ các hộp giới hạn chồng chéo và giữ lại những hộp với xác suất cao nhất.
+
+
+3.3. So Sánh hai mô hình:
+
+Faster RCNN: 
+YOLO: Nhanh hơn nhưng có thể kém chính xác hơn trong một số trường hợp. Phù hợp cho các ứng dụng cần tốc độ xử lý nhanh.
+
+Faster RCNN thực hiện phát hiện đối tượng theo hai giai đoạn: đầu tiên là đề xuất các hộp giới hạn, sau đó là phân loại và tinh chỉnh. Điều này thường đảm bảo độ chính xác cao hơn nhưng tốc độ xử lý chậm hơn.Phức tạp hơn, chính xác hơn nhưng chậm hơn. Phù hợp cho các ứng dụng cần độ chính xác cao.
+
+YOLO thực hiện tất cả trong một giai đoạn, xử lý nhanh hơn nhưng đôi khi kém chính xác hơn so với Faster RCNN, đặc biệt trong việc phát hiện các đối tượng nhỏ hoặc chồng chéo.
 
 
