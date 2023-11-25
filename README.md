@@ -27,3 +27,4 @@ Input và Output bài toán
 *   Output( được chia làm 3 trường hợp)\
     * Bouding box quanh biển báo
     * code của biển báo
+![Ảnh minh họa](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/traffic_labels.jpg)
