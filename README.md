@@ -105,7 +105,7 @@ YOLO là một mô hình phát hiện đối tượng nhanh và hiệu quả, ho
 * Lọc và Tinh Chỉnh: Cuối cùng, YOLO áp dụng các kỹ thuật như non-maximum suppression để loại bỏ các hộp giới hạn chồng chéo và giữ lại những hộp với xác suất cao nhất.
 
 
-3.3. So Sánh hai mô hình:
+### 3.3. So Sánh hai mô hình:
 
 Faster RCNN: 
 YOLO: Nhanh hơn nhưng có thể kém chính xác hơn trong một số trường hợp. Phù hợp cho các ứng dụng cần tốc độ xử lý nhanh.
