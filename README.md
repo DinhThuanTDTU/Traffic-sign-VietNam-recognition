@@ -9,6 +9,7 @@
  </br></h2>
 
 
+
 ## Giảng viên hướng dẫn
 Họ tên | Email
 --- | --- 
@@ -73,7 +74,7 @@ bộ dữ liệu dữ bao biển báo giao thông trong đề tài này sẽ g�
 
 ![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/46traffic.jpg)
 
-và đây là biểu đồ số lần xuất hiện của biển báo trong bộ dữ liệu.
+vvấu đây là biểu đồ số lần xuất hiện của biển báo trong bộ dữ liệu.
 ![46 biển báo giao thông và code của mỗi loại biển báo ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/phanbo_class.jpg)
 
 ## 3. Huấn luyện model
@@ -93,9 +94,8 @@ Faster RCNN là một mô hình phát hiện đối tượng hai giai đoạn. �
 ### 3.2. YOLO
 Thuật Toán  [YOLO ]( https://arxiv.org/abs/1506.02640) được phát triển bởi Joseph Redmon và cộng sự.
 YOLO là một mô hình phát hiện đối tượng nhanh và hiệu quả, hoạt động theo các bước sau:
-
-![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp)
-
+![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp
+)
 *   Xử Lý Toàn Bộ Hình Ảnh: Đầu tiên, YOLO xem xét toàn bộ hình ảnh một cách tổng thể, không giống như các mô hình phát hiện đối tượng truyền thống.
 
 *   Chia Hình Ảnh thành Lưới: Hình ảnh được chia thành một lưới có kích thước cố định (ví dụ: 13x13).
@@ -113,5 +113,79 @@ YOLO: Nhanh hơn nhưng có thể kém chính xác hơn trong một số trườ
 Faster RCNN thực hiện phát hiện đối tượng theo hai giai đoạn: đầu tiên là đề xuất các hộp giới hạn, sau đó là phân loại và tinh chỉnh. Điều này thường đảm bảo độ chính xác cao hơn nhưng tốc độ xử lý chậm hơn.Phức tạp hơn, chính xác hơn nhưng chậm hơn. Phù hợp cho các ứng dụng cần độ chính xác cao.
 
 YOLO thực hiện tất cả trong một giai đoạn, xử lý nhanh hơn nhưng đôi khi kém chính xác hơn so với Faster RCNN, đặc biệt trong việc phát hiện các đối tượng nhỏ hoặc chồng chéo.
+
+### Huấn luyện mô hình
+
+Trong quá trình đào tạo của mình, tôi đã áp dụng Gradient Descent
+optimizer và đào tạo tất cả các mô hình trong 100 epochs với bathch_size là 32. Chúng tôi đã duy trì các cài đặt tham số tương tự trong các model với nhau. Bằng cách sử dụng phương pháp này, chúng tôi đảm bảo tính nhất quán và cho phép so sánh trực tiếp.
+
+#### Cách huấn luyện model 
+Sau đây là cách tổ chức thư mục để huấn luyện model:
+
+* DATASET 
+    *    Train
+        *   Images
+        *   Labels
+    *    Val
+        *   Images
+        *   Labels
+
+source code train model Faster R-CNN: [Here](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Faster%20R-CNN%20MobileNetV3/train.ipynb)
+
+source code train model YOLO: [Here](https://docs.ultralytics.com/modes/train/#usage-examples)
+
+hoặc bạn cũng có thể tải sẳn model tôi đã để ở phía trên.
+
+
+
+
+
+## 4.1 Đánh giá Model
+Để đánh giá một model Object Detection có tốt hay không thì các nhà khoa học thường sử dụng hay thông số chính đó là mAP và FPS. Đầu tiên để hiểu hai thông số này thì ta cần làm rõ các thông số liên quan.
+#### 4.1.1 IOU
+IOU (Intersection Over Union): IOU là thước đo mức độ chồng chéo giữa hai hình dạng. Trong bối cảnh phát hiện đối tượng trong thị giác máy tính, IOU thường được sử dụng để đánh giá mức độ chồng chéo giữa hai hình chữ nhật: hộp giới hạn được dự đoán và hộp giới hạn thực tế trên mặt đất.
+Công thức:
+
+![Công thức tính IOU](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/IOU.png)
+
+#### 4.1.3. Presicion 
+Presicion: đo lường mức độ mô hình có thể xác định nhãn hoặc lớp chính xác cho dữ liệu. độ chính xác được tính bằng cách chia số lượng kết quả dương tính thật (𝑇𝑃) cho tổng số lượng kết quả dương tính thật và dương tính giả (𝐹𝑃) 
+Công thức:
+![Công thức tính Precision](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/precision%20.png)
+
+#### 4.1.3. Recall
+Recall: Đo lường mức độ một mô hình có thể xác định chính xác các điểm dữ liệu có liên quan hoặc lớp tích cực trong số tất cả các điểm dữ liệu thuộc lớp đó. Nó được tính bằng cách chia số 𝑇𝑃 cho tổng số dương tính thật (TP) và âm tính giả (𝐹𝑁)
+Công thức: 
+![Công thức tính Precision](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/recall.png)
+
+#### 4.1.4. Precision-Recall Curve (PRC):
+PRC là biểu diễn đồ họa minh họa mối quan hệ giữa Presicion và Recall ở các ngưỡng khác nhau của mô hình phát hiện đối tượng. Bằng cách điều chỉnh ngưỡng, PRC cho phép quan sát các mức độ Presicion và Recall khác nhau, dẫn đến một đường cong mô tả sự cân bằng giữa hai số liệu này.
+
+![PRC ](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/prc.jpg)
+
+#### 4.1.5 Average Precision (AP) và mean Average Precision (mAP)
+
+Trong các bài toán Object Detection, số liệu AP được tính bằng diện tích dưới đường cong PRC. Giá trị này cho biết mức hiệu suất của mô hình trên một lớp tính năng cụ thể. AP cung cấp một giá trị duy nhất để đánh giá sự cân bằng giữa độ chính xác và khả năng thu hồi, đồng thời phản ánh mức độ chính xác của mô hình trong việc định vị đối tượng. Sau khi tính AP, chỉ số Mean Average Precision (mAP) được sử dụng để tính giá trị trung bình của AP.
+
+#### 4.1.6 FPS
+
+FPS cho biết số lượng hình ảnh mà mô hình có thể xử lý trong một giây. Chỉ số này rất quan trọng khi đánh giá khả năng xử lý thời gian thực của mô hình. FPS cao cho thấy model có khả năng xử lý nhanh, phù hợp với các ứng dụng cần phản hồi tức thời.
+
+### 4.2 Đánh giá model
+
+bảng kết quả huấn luyện model được đánh giá trên tập VAL 
+
+Model | mAP50 | mAP50:95 | FPS  
+--- | --- | --- | --- 
+Faster R-CNN | 0.910 | 0.668 | 39 
+YOLOv8n | 0.956 | 0.730 | 84.03
+YOLOv8s | 0.981 | 0.790 | 74.07
+YOLOv8m | 0.984 | 0.839 | 66.67
+
+Bảng trên cung cấp sự so sánh toàn diện về các đối tượng khác nhau
+các mô hình phát hiện, bao gồm các biến thể khác nhau của YOLOv8 và Faster R-CNN. Các thử nghiệm của chúng tôi cho thấy rằng tất cả các mô hình này đều đạt được điểm mAP50 vượt quá 90%. Khi xem xét kỹ hơn, YOLOv8 nổi bật là mô hình chính xác nhất, vượt trội so với các mô hình khác. Tuy nhiên, điều đáng chú ý là Faster R-CNN MobileNetV3 có độ chính xác tương đối thấp hơn trong các đánh giá của chúng tôi. Mặt khác, YOLOv8n đã thể hiện số khung hình trên giây cao nhất (84 FPS), khiến nó trở thành lựa chọn thiết thực hơn cho các ứng dụng phát hiện đối tượng theo thời gian thực yêu cầu xử lý hiệu quả.
+
+
+
 
 
