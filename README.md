@@ -124,11 +124,11 @@ Sau đây là cách tổ chức thư mục để huấn luyện model:
 
 * DATASET 
     *    Train
-        *   Images
-        *   Labels
+          *   Images
+          *   Labels
     *    Val
-        *   Images
-        *   Labels
+          *   Images
+          *   Labels
 
 source code train model Faster R-CNN: [Here](https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Faster%20R-CNN%20MobileNetV3/train.ipynb)
 
