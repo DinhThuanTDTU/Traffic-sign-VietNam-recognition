@@ -161,7 +161,7 @@ Công thức:
 #### 4.1.4. Precision-Recall Curve (PRC):
 PRC là biểu diễn đồ họa minh họa mối quan hệ giữa Presicion và Recall ở các ngưỡng khác nhau của mô hình phát hiện đối tượng. Bằng cách điều chỉnh ngưỡng, PRC cho phép quan sát các mức độ Presicion và Recall khác nhau, dẫn đến một đường cong mô tả sự cân bằng giữa hai số liệu này.
 
-![PRC ]([https://github.com/thuanvipghe/Traffic-sign-VietNam-recognition/blob/main/Picture/prc.jpg](https://github.com/DinhThuanTDTU/Traffic-sign-VietNam-recognition/blob/main/Picture/precision_recall_curve.jpg)
+![PRC ](https://github.com/DinhThuanTDTU/Traffic-sign-VietNam-recognition/blob/main/Picture/precision_recall_curve.jpg)
 
 #### 4.1.5 Average Precision (AP) và mean Average Precision (mAP)
 
