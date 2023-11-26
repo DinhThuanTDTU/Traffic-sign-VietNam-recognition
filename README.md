@@ -1,4 +1,4 @@
-<h0 align="center" font-size= 36px;><b>Trường Đại Học Tôn Đức Thắng</b></h3>
+<h1 align="center" font-size= 40px;><b>Trường Đại Học Tôn Đức Thắng</b></h3>
 <p align="center">
   <a href="https://tdtu.edu.vn/" title="Trường Đại học Tôn Đức Thắng" style="border: 5;">
     <img src="https://ted.com.vn/wp-content/uploads/2022/08/tdt50.jpg" alt="Trường Đại học Tôn Đức Thấng">
