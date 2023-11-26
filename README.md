@@ -96,6 +96,7 @@ Thuật Toán  [YOLO ]( https://arxiv.org/abs/1506.02640) được phát triển
 YOLO là một mô hình phát hiện đối tượng nhanh và hiệu quả, hoạt động theo các bước sau:
 ![Mô hình YOLO ](https://www.labellerr.com/blog/content/images/2023/01/yolo-algorithm-1.webp
 )
+![Mô hình YOLO ](https://github.com/DinhThuanTDTU/Traffic-sign-VietNam-recognition/blob/main/Picture/yolo_trafic.jpg)
 *   Xử Lý Toàn Bộ Hình Ảnh: Đầu tiên, YOLO xem xét toàn bộ hình ảnh một cách tổng thể, không giống như các mô hình phát hiện đối tượng truyền thống.
 
 *   Chia Hình Ảnh thành Lưới: Hình ảnh được chia thành một lưới có kích thước cố định (ví dụ: 13x13).
